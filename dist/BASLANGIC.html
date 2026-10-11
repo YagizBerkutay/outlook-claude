@@ -1,0 +1,49 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Outlook + Claude — Hangi sürüm?</title><style>body{margin:0;background:#f4f3ef;color:#222;font:16px/1.65 system-ui,Segoe UI,sans-serif}main{max-width:880px;margin:32px auto;padding:32px;background:#fff;border-radius:16px;border:1px solid #e1dfd9}h1{font-size:28px;line-height:1.2}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;margin:24px 0}a{color:#a14d2e}nav{display:flex;flex-wrap:wrap;gap:16px;border-bottom:1px solid #ddd;padding:0 0 18px}@media(max-width:600px){main{margin:12px;padding:20px}h1{font-size:24px}}@media print{body{background:white}main{border:0;margin:0;max-width:none}nav{display:none}}</style></head><body><main><h1>Outlook + Claude — Hangi sürüm?</h1><nav><a href="1-Claude-Tek-Mail.zip">Tek mail ZIP</a><a href="2-Claude-Posta-Kutusu-Ajani.zip">Posta kutusu ajanı ZIP</a><a href="ONCE-BUNU-OKU.txt">Açıklama yazısı</a></nav><pre>OUTLOOK + CLAUDE — İKİ AYRI SÜRÜM
+Hazırlanma: 11 Ekim 2026
+
+Bu klasörde iki kurulum ZIP'i var. Hepsini kurmanız gerekmez; ihtiyacınıza uygun olanı seçin. Her ZIP'in içinde KURULUM.txt, çift tıklayarak açılabilen KURULUM-TR.html, README.md ve DOGRULAMA.md bulunur.
+
+1-Claude-Tek-Mail.zip — ÖNCEKİ TEK MAIL PANELİ
+Outlook'ta açık maili özetlemek, analiz etmek, çevirmek, yeniden yazmak ve kısa yanıt hazırlamak içindir. Maili otomatik almak/yanıta eklemek için Outlook'a manifest.xml eklentisi yüklenir. Outlook web/yeni/klasik sürümlerindeki desteklenen hesaplarla kullanılabilir. Tüm gelen kutusuna veya klasörlere ajan erişimi yoktur. Tarayıcıda elle metin yapıştırma da mümkündür. Maili kullanıcı gönderir.
+Adres: https://localhost:3443
+Eklenti adı: Claude Tek Mail
+
+2-Claude-Posta-Kutusu-Ajani.zip — YENİ POSTA KUTUSU AJANI
+Klasik Outlook'taki gelen kutusu ve diğer klasörlerle çalışır. Mailleri arar, okur, özetler, yanıt taslağı ve posta yönetimi işlemleri hazırlar; takvim/görev araçları da vardır. İşlemleri ekranda görüp seçerek onayladıktan sonra Outlook'a uygular. Sınırsız bilgisayar kontrolü değildir; kapsam ve sınırlar kendi rehberindedir.
+Adres: https://localhost:3447
+Klasik Outlook açık ve hesabı kurulu olmalı. Bu yerel yol yeni Outlook ile çalışmaz. Microsoft uygulama kaydı gerekmez.
+Outlook içine eklenti yüklemek ZORUNLU DEĞİLDİR: tarayıcıdan aynı ajan kullanılabilir. İsteğe bağlı manifest.xml, paneli Outlook içine yerleştirir.
+İsteğe bağlı eklenti adı: Claude Posta Kutusu Ajani
+
+HANGİSİNİ SEÇEYİM?
+“Açık maili özetlesin, cevap yazsın” → 1. paket.
+“Gelen kutumu tarasın, mailleri bulsun, işlerimi çıkarsın, klasör/taslak/takvim/görevlerle çalışsın” → 2. paket.
+“Yeni Outlook kullanıyorum ve tek mail yeterli” → 1. paket.
+“Outlook'a özel eklenti kurmak istemiyorum ama klasik Outlook'um var” → 2. paket; tarayıcıdan kullanın.
+
+İKİSİNDE DE ORTAK OLANLAR
+- Model API anahtarı yok. Kullanıcı resmî native Claude Code'a kendi Claude abonelik hesabıyla giriş yapar. Abonelik kullanım limitinden harcar.
+- Claude Desktop sohbet ekranını otomatik kontrol etmezler. Desktop hesabı/aboneliği aynı olabilir, ancak ayrıca Claude Code kurulumu ve onun kendi girişi gerekir.
+- Node.js 22+, Git for Windows, native Claude Code ve internet gerekir. 2. paket en az Claude Code 2.1.248 ister; güncel sürümü kullanın.
+- ZIP'i tamamen çıkarın. Önce KURULUM-TR.html veya KURULUM.txt okuyun. 1-KURULUM.cmd → 2-CLAUDE-GIRIS.cmd → 4-TANI.cmd → 3-BASLAT.cmd sırasını izleyin. 2. pakette klasik Outlook'u da açın.
+- Köprü yereldir, model buluttadır: gönderilen/araçlarla okunan mail bilgileri Anthropic'e gider.
+- ZIP'ler kaynak kod ve kurulum betiklerini içerir. Claude Code/Node/Git/Office programlarının kendileri ZIP'e gömülmez; internetten resmî kurulum gerekir.
+- ZIP'lerde kişisel posta, şifre, giriş oturumu, API anahtarı, özel sertifika veya yerel ayarlar yoktur. Her kişi kendi kurulumu/girişini yapar. Kurulumdan sonra oluşan .local klasörünü paylaşmayın.
+- İki paket ayrı port ve eklenti kimlikleri kullandığından birlikte kurulabilir. Çoğu kullanıcı için tek paket yeterlidir.
+
+TEST DURUMU
+Tek mail: 12 otomatik test; örnek veriyle tarayıcı/Office.js akışları.
+Ajan: 16 otomatik test; gerçek yerel MCP protokolü üzerinden örnek posta kutusu; örnek verilerle tarayıcı/onay akışı.
+Bu bilgisayarda Claude hesabı bulunmadığından gerçek Claude aboneliğiyle uçtan uca deneme yapılamadı. Ajanın gerçek posta gönderme/taşıma/silme işlemleri de denenmedi. İlk denemeyi yalnız okumayla yapın. Ayrıntılı sınama kayıtları her paketin DOGRULAMA.md dosyasındadır.
+
+BAŞLANGIÇ
+1. İhtiyacınıza uygun iç ZIP'i çıkarın.
+2. O paketin KURULUM-TR.html dosyasını açın.
+3. Rehberdeki sırayı uygulayın. İlk görevi yalnız okuma/örnek maille deneyin.
+
+Resmî belgeler:
+https://code.claude.com/docs/en/authentication
+https://code.claude.com/docs/en/cli-reference
+https://code.claude.com/docs/en/mcp
+https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/sideload-outlook-add-ins-for-testing
+</pre></main></body></html>

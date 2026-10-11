@@ -1,0 +1,8 @@
+.local/
+.qa/
+node_modules/
+*.pfx
+*.cer
+config.json
+.DS_Store
+Thumbs.db

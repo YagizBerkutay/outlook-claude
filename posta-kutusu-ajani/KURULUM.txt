@@ -1,0 +1,93 @@
+﻿CLAUDE POSTA KUTUSU AJANI — KURULUM VE KULLANIM
+Hazırlanma: 11 Ekim 2026
+
+NE İŞE YARAR?
+Tek bir açık maille sınırlı değildir. Klasik Outlook'taki gelen kutusunu ve diğer posta klasörlerini listeler, mailleri arar ve okur, önemli işleri/tarihleri çıkarır. Yanıt/iletme/yeni mail taslağı, okundu durumu, takip işareti, kategori, taşıma/arşivleme, Silinmiş Öğeler'e taşıma ve klasör oluşturma işlemleri hazırlayabilir. Takvim ve görevleri okuyabilir, kişisel etkinlik/görev oluşturabilir ve görevi tamamlayabilir.
+
+Model olarak resmî Claude Code CLI ve kullanıcının kendi Claude abonelik girişini kullanır. API anahtarı gerekmez. Claude Desktop'ın sohbet ekranını otomatik kontrol etmez; yalnız Desktop'a giriş yapmak yeterli değildir. Resmî Microsoft veya Anthropic eklentisi değildir.
+
+GEREKENLER
+- Windows 10/11 ve internet.
+- Kurulu ve lisanslı KLASİK Microsoft Outlook. Mail hesabınız klasik Outlook'ta yapılandırılmış ve Outlook açık olmalı. Bu yerel bağlantı yeni Outlook ile çalışmaz. Paket Office/klasik Outlook'u kurmaz.
+- Claude Code'da abonelikle kullanılabilen bir Claude hesabı (örneğin Pro/Max). Her kişi kendi hesabına giriş yapar. Abonelik kullanım limitinden harcar.
+- Node.js 22+, Git for Windows, native Claude Code 2.1.248 veya üstü. Güncel sürüm önerilir. Kurulum betiği eksik bağımlılıkları winget üzerinden kurmayı dener.
+- Windows kullanıcınızın localhost HTTPS sertifikasını güvenilir depoya ekleyebilmesi. Windows/kurum izinleri gerekebilir.
+- Microsoft uygulama kaydı veya Graph API yapılandırması gerekmez.
+
+ADIM ADIM KURULUM
+1. 2-Claude-Posta-Kutusu-Ajani.zip dosyasını tamamen çıkarın. ZIP içinden çalıştırmayın. Kalıcı bir yerel klasör seçin.
+2. Klasik Outlook'u açın, hesabınızı ekleyin ve senkronizasyonu tamamlayın. 0-KLASIK-OUTLOOK.cmd yaygın klasik Outlook kurulum yollarını bulup açmayı dener. “Yeni Outlook” yeterli değildir.
+3. 1-KURULUM.cmd çalıştırın. Bağımlılıkları denetler/eksikleri kurmayı dener, kullanıcınıza özel localhost sertifikası ve .local ayarları oluşturur. Windows sertifika onayı çıkarsa inceleyip kendiniz onaylayın. Pencereyi kapatmadan hata varsa okuyun.
+4. 2-CLAUDE-GIRIS.cmd çalıştırın. Anthropic'in kendi giriş ekranında abonelik hesabınızla giriş yapın. API/Console hesabını seçmeyin. Mevcut uygun Claude Code girişiniz varsa bu adımı atlayabilirsiniz.
+5. Klasik Outlook açıkken 4-TANI.cmd çalıştırın. “Claude abonelik oturumu bağlı” ve “Klasik Outlook bağlı” sonuçları gerekir. Tanı modelden yanıt üretmez; kota/üretim sınamasının yerine geçmez.
+6. 3-BASLAT.cmd çalıştırın. Sunucu penceresi ve klasik Outlook açık kalsın.
+7. Tarayıcıda https://localhost:3447 adresini açın. Sertifika uyarısı olmamalı. Kurulumdan sonra sertifika uyarısı sürerse kurulumu/kurum politikasını kontrol edin.
+8. İlk görev olarak aşağıdaki yalnız okuma örneğini gönderin. Sonuçta posta verisine erişildiğini, taramanın kapsamını ve hiçbir işlemin uygulanmadığını kontrol edin.
+
+İLK DENEME
+“Son 7 gündeki gelen kutumu incele. Önemli mailleri, benden beklenen işleri ve son tarihleri çıkar. Kaç maili incelediğini belirt. Hiçbir maili değiştirme.”
+
+İŞLEM DENEMESİ
+“Teklif konulu maili bul, tam metnini oku ve cuma günü dönüş yapacağımı belirten kısa bir yanıt taslağı hazırla. Gönderme.”
+Ajan taslağı işlem kartına hazırlar. Kartı seçip “Seçilenleri onayla ve uygula” düğmesine basarsanız Outlook'ta kaydedilmiş taslak oluşur. Bu adım mail göndermez. Taslağı Outlook'ta açıp kontrol edin. Daha sonra gönderme isterseniz ajan taslağı yeniden okur; alıcı, gizli alıcı, hesap, ek ve metni içeren ayrı gönderme kartını sizin onaylamanız gerekir. Outlook gönderimi teslim garantisi değildir.
+
+OUTLOOK İÇİNDE PANEL — İSTEĞE BAĞLI
+Tarayıcıdaki ajan tüm bu işlevler için yeterlidir; Outlook'a özel eklenti yüklemek zorunlu değildir.
+Paneli Outlook içine koymak isterseniz:
+1. https://aka.ms/olksideload adresini Outlook'ta kullandığınız aynı posta hesabıyla açın.
+2. My add-ins / Eklentilerim → Custom Addins / Özel eklentiler → Add a custom add-in / Özel eklenti ekle → Add from File / Dosyadan ekle.
+3. Bu paketin manifest.xml dosyasını seçin. Diğer paketin XML dosyası ayrı bir eklentidir.
+4. Klasik Outlook'u yenileyin, bir mesaj veya taslak açın. İleti/Giriş → Tüm Uygulamalar menüsünde “Claude Posta Kutusu Ajani” → “Asistanı Aç” yolunu kullanın. Menü adı/sürüm değişebilir, önbellek nedeniyle görünmesi gecikebilir.
+5. Düğmeyi açmak için bir mesaj açmanız gerekebilir; açılan ajan bütün posta kutusuyla çalışabilir. Sunucu ve klasik Outlook açık kalmalıdır.
+Paneli kaldırmak tarayıcıdaki ajanı kaldırmaz. Özel eklenti yükleme kurum tarafından kapatılmışsa tarayıcı yolu yine klasik Outlook COM bağlantısı kullanılabildiği ölçüde çalışır.
+
+ONAY AKIŞI
+- Okuma/analiz sırasında ajan Outlook araçlarını kendisi çağırır.
+- Posta kutusunu değiştiren araç yalnız işlem hazırlayabilir; modelin doğrudan uygulama/gönderme aracı yoktur.
+- İşlem kartları seçili gelmez. Yalnız sizin seçip uyguladığınız kartlar Outlook'a aktarılır.
+- Yeni görev başarıyla tamamlandığında önceki işlem önerileri yenilenir.
+- Bir görevde aynı mevcut öğeye tek işlem hazırlanır; farklı maillere toplu işlem mümkündür.
+- Mail bu arada değişmişse uygulama durur; tekrar inceletin. Hatalı/belirsiz işlemler otomatik tekrarlanmaz. Sonucu Outlook'ta kontrol edin.
+
+SINIRLAR
+Sınırsız bilgisayar ajanı değildir. PDF/Word/Excel eki analizi, toplantı daveti gönderme, kişiler/kurallar/hesap ayarı düzenleme, kalıcı silme ve sürekli arka plan izleme yoktur. TXT/CSV/MD/JSON/LOG/ICS eklerini 1 MB altında düz metin olarak okuyabilir. Bir aramada 250 klasör/10.000 öğe tarama, 100 sonuç; bir listede 100 mail, gövdede 40.000 karakter, takvim/görev sonuçlarında 200 kayıt sınırı vardır. Ajan filtreleme/sayfalama yapabilir; kesilmiş verilerle eksiksiz tarama iddiasında bulunmamalıdır. Çok uzun taslaklar uygulamadan gönderilmez. Tek görevde en fazla 100 değişiklik ve 40 model turu vardır. Outlook önbelleği/senkronizasyonu erişilen veriyi etkiler.
+
+SORUN GİDERME
+- “Claude bulunamadı”: 1-KURULUM.cmd tekrar çalıştırın; Git for Windows ve native Claude Code kurulmuş mu kontrol edin. npm claude.cmd sarmalayıcısı kullanılmaz.
+- CLI eski/bayrak desteklenmiyor: Claude Code'u güncelleyin. Kendi terminalinizde claude update veya winget upgrade --id Anthropic.ClaudeCode --exact. Ardından kurulumu yeniden çalıştırın.
+- API/Console oturumu: 2-CLAUDE-GIRIS.cmd ile Claude abonelik hesabınızı seçin. Gerekiyorsa kendi terminalinizde claude auth logout, ardından claude auth login.
+- Klasik Outlook bağlantısı yok: Outlook classic açık mı, hesabınız hazır mı, hesap/izin penceresi bekliyor mu kontrol edin. Yeni Outlook desteklenmez. 4-TANI.cmd çalıştırın. Outlook güvenlik izni gösterirse kullanıcı kendisi değerlendirmelidir; paket bunu atlatmaz.
+- 3447 portu kullanımda: Bu paketin başka sunucu penceresini Ctrl+C ile durdurun. Tek mail paketi 3443, Codex test paketi 3445 kullandığından onlarla port çakışmaz.
+- Tanı geçiyor ama model çalışmıyor: Abonelik limitini, interneti ve güncel CLI sürümünü kontrol edin. Kurum Claude/MCP araçlarını engelliyorsa kurum yöneticinizle görüşün.
+- Sertifika/yerel ağ: 1-KURULUM.cmd ve kurum sertifika politikalarını kontrol edin; gerekiyorsa Outlook/WebView2'yi güncelleyin. Yerel ağ erişimi sorulursa bu localhost hizmeti için izin kararını kendiniz verin.
+
+ELLE BAĞIMLILIK KURULUMU
+PowerShell'de:
+winget install --id OpenJS.NodeJS.LTS --exact
+winget install --id Git.Git --exact
+winget install --id Anthropic.ClaudeCode --exact
+Terminali kapatıp yeniden açın; sonra 1-KURULUM.cmd tekrar çalıştırın.
+Winget yoksa resmî Node.js LTS, Git for Windows ve Claude Code kurulum sayfalarını kullanın:
+https://nodejs.org/en/download
+https://git-scm.com/downloads/win
+https://code.claude.com/docs/en/setup
+
+VERİ VE PAYLAŞIM
+“Yerel” olan arayüz/köprüdür; model bulutta çalışır. Görev için okunan mail/takvim/görev bilgileri Claude Code üzerinden Anthropic'e gider. Kullanıcının abonelik limitlerinden kullanır. Desktop/diğer sohbetlerin geçmişi otomatik aktarılmaz. Bu ajanın son konuşma adımları yerel sunucu belleğinde tutulur; Yeni sohbet veya sunucuyu kapatmak bunları temizler. Geçici iş verileri .local/jobs içinde tutulup görev sonunda silinir. CLI sohbet kalıcılığı kapalıdır; Claude/işletim sisteminin kendi kayıt politikaları ayrıca geçerlidir. Kurum tarafından yönetilen Claude politikaları uygulanır.
+ZIP içinde şifre, oturum, API anahtarı, özel sertifika veya kişisel mail verisi bulunmaz. Kurulum sonrası oluşan .local klasörünü paylaşmayın. Her bilgisayarda kurulum ve kişisel giriş yeniden yapılır.
+
+KALDIRMA
+Sunucu penceresinde Ctrl+C. Yüklediyseniz Outlook'ta özel eklentiyi kaldırın. 5-SERTIFIKAYI-KALDIR.cmd yalnız bu paketin kendi sertifikasını kaldırır. Sonra paket klasörünü elle silebilirsiniz. Outlook, Node.js, Git ve Claude Code kaldırılmaz.
+
+DOĞRULAMA DURUMU
+16 otomatik test ve örnek verilerle tarayıcı/MCP testleri geçti. Bu bilgisayarda Claude hesabı bulunmadığı için gerçek Claude aboneliği → Outlook uçtan uca akışı denenmedi. Gerçek posta gönderme/taşıma/silme de denenmedi. İlk kullanımı yukarıdaki yalnız okuma denemesiyle yapın. Ayrıntılar: DOGRULAMA.md.
+
+RESMÎ KAYNAKLAR
+Claude Code giriş: https://code.claude.com/docs/en/authentication
+CLI seçenekleri: https://code.claude.com/docs/en/cli-reference
+MCP: https://code.claude.com/docs/en/mcp
+Programdan kullanım: https://code.claude.com/docs/en/headless
+Kullanım koşulları: https://code.claude.com/docs/en/legal-and-compliance
+Outlook eklenti yükleme: https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/sideload-outlook-add-ins-for-testing
+Outlook nesne modeli: https://learn.microsoft.com/en-us/office/client-developer/outlook/selecting-an-api-or-technology-for-developing-solutions-for-outlook
+Yeni/klasik Outlook farkları: https://support.microsoft.com/en-us/outlook/getstarted/feature-comparison-between-new-outlook-and-classic-outlook

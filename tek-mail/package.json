@@ -1,0 +1,9 @@
+{
+  "name": "outlook-local-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal Outlook side panel connected to the user's installed Claude Code CLI",
+  "engines": { "node": ">=22" },
+  "scripts": { "start": "node server.mjs", "test": "node --test tests/*.test.mjs", "check": "node --check server.mjs && node --check lib/bridge.mjs && node --check lib/claude.mjs && node --check public/taskpane.js" }
+}

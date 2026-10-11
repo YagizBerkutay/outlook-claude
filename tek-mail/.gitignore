@@ -1,0 +1,4 @@
+.local/
+.qa/
+node_modules/
+*.zip

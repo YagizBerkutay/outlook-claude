@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="local-token" content="__LOCAL_TOKEN__">
+  <title>Yerel E-posta Asistanı</title>
+  <link rel="stylesheet" href="/taskpane.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="/taskpane.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><span class="badge">KİŞİSEL YEREL BAĞLANTI</span><h1>E-postana yardımcı olsun.</h1><p>Claude Code aboneliğinle taslak hazırla, özetle ve düzenle.</p></header>
+    <div class="connection"><span id="connection">Bağlantı kontrol ediliyor…</span><button id="check" class="subtle" type="button">Kontrol et</button></div>
+    <label for="subject">Konu</label><input id="subject" maxlength="1000" placeholder="E-postanın konusu">
+    <div class="row"><label for="body">E-posta metni</label><button id="read" class="subtle" type="button" disabled>Açık e-postayı getir</button></div>
+    <textarea id="body" rows="7" maxlength="40000" placeholder="Outlook’taki e-postayı getir veya metni buraya yapıştır."></textarea>
+    <p class="hint" id="context-note">Ekler otomatik okunmaz. Yalnızca buradaki konu, metin ve isteğin Claude’a gönderilir.</p>
+    <div class="presets"><button data-prompt="Bu e-postaya uygun bir yanıt taslağı hazırla. Eksik bilgiler için [yer tutucu] kullan.">Yanıt hazırla</button><button data-prompt="Bu e-postayı kısa maddelerle özetle; istenen işleri ve belirtilen son tarihleri çıkar.">Özetle</button><button data-prompt="Bu e-posta metnini daha açık ve profesyonel yaz. Anlamını değiştirme.">Düzenle</button><button data-prompt="Bu e-posta metnini Türkçeye çevir.">Türkçeye çevir</button></div>
+    <label for="instruction">Claude’dan ne istiyorsun?</label><textarea id="instruction" maxlength="4000" rows="3" placeholder="Örneğin: Cuma günü dönüş yapacağımı söyleyen kısa bir yanıt yaz."></textarea>
+    <div class="row"><button id="generate" class="primary" type="button">Claude’a gönder</button><button id="cancel" type="button" hidden>İptal</button></div>
+    <p id="status" role="status" aria-live="polite"></p>
+    <section class="result"><label for="result">Yanıt</label><textarea id="result" rows="9" readonly placeholder="Hazırlanan metin burada görünecek."></textarea><div class="row"><button id="insert" type="button" disabled>Outlook yanıtına ekle</button><button id="copy" type="button" disabled>Kopyala</button></div></section>
+    <footer>Metni kontrol ettikten sonra Outlook’tan kendin gönder. Her istek ayrı bir konuşmadır.</footer>
+  </main>
+</body>
+</html>

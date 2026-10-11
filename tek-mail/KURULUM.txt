@@ -1,0 +1,54 @@
+﻿CLAUDE TEK MAIL PANELİ — KURULUM VE KULLANIM
+Hazırlanma: 11 Ekim 2026
+
+NE İŞE YARAR?
+Önceki tek mail sürümüdür. Outlook'ta açık mesajın konu ve metnini alır; özet, analiz, yeniden yazma, çeviri ve yanıt taslağı üretir. Kullanıcı sonucu kopyalar veya Outlook yanıtına ekler. Gönder düğmesine kullanıcı basar. Gelen kutusunu topluca taramaz, klasör/takvim/görev yönetmez ve ekleri okumaz. Tarayıcı önizlemesinde mail metnini elle yapıştırarak denenebilir.
+
+GEREKENLER
+Windows 10/11, internet, Node.js 22+, Git for Windows, güncel native Claude Code ve Claude Code'da abonelikle kullanılabilen bir Claude hesabı (örneğin Pro/Max). API anahtarı kullanılmaz. Claude Desktop sohbet penceresini kontrol etmez; Desktop'a giriş yapmak tek başına yeterli değildir. Outlook'tan mail almak/yanıta eklemek için Office web eklentilerini destekleyen hesap/sürüm ve özel eklenti yükleme izni gerekir. Outlook web, yeni Outlook veya klasik Outlook kullanılabilir. Yerel localhost sertifikası için Windows/kurum izni gerekebilir.
+
+ADIM ADIM KURULUM
+1. 1-Claude-Tek-Mail.zip dosyasını tamamen çıkarın. Kalıcı bir klasöre koyun; ZIP içinden çalıştırmayın.
+2. 1-KURULUM.cmd çalıştırın. Eksikse Node.js LTS, Git for Windows ve native Claude Code'u winget ile kurmayı dener; kullanıcıya özel localhost HTTPS sertifikası/ayarları oluşturur. Sertifika onayı çıkarsa inceleyip kendiniz onaylayın.
+3. 2-CLAUDE-GIRIS.cmd çalıştırın. Claude aboneliğiniz olan hesabı seçin. API/Console girişini seçmeyin. Mevcut uygun Claude Code girişiniz varsa tekrar giriş gerekmeyebilir.
+4. 4-TANI.cmd ile abonelik girişini kontrol edin. Bu adım gerçek model üretim denemesi değildir.
+5. 3-BASLAT.cmd çalıştırın; sunucu penceresi açık kalsın.
+6. Tarayıcıda https://localhost:3443 adresini açın. Sertifika uyarısı olmamalı. Örnek bir mail metnini elle yazıp “Bu maili özetle ve kısa bir yanıt taslağı hazırla” isteğini deneyin.
+7. Outlook'ta kullandığınız aynı posta hesabıyla https://aka.ms/olksideload adresini açın.
+8. My add-ins / Eklentilerim → Custom Addins / Özel eklentiler → Add a custom add-in / Özel eklenti ekle → Add from File / Dosyadan ekle yolundan BU PAKETTEKİ manifest.xml dosyasını yükleyin. XML seçeneği yeni uygulama mağazasında görünmeyebilir; doğrudan bu diyalogu kullanın.
+9. Outlook'u yenileyin. Bir mail açın, uygulamalar/Tüm Uygulamalar menüsünde “Claude Tek Mail” → “Asistanı Aç” düğmesini bulun. Sürümüne göre menü/şerit değişir; klasik Outlook önbelleği nedeniyle görünmesi 24 saate kadar sürebilir.
+10. Panelde “Açık e-postayı getir” düğmesine basın, isteğinizi yazıp “Claude'a gönder” seçin. Sonucu inceleyin; “Outlook yanıtına ekle” veya “Kopyala” kullanın. Gönderme kullanıcıya aittir.
+
+EKLENTİ ZORUNLU MU?
+Maili Outlook'tan otomatik almak ve yanıtına eklemek için bu sürümde eklenti gerekir. Tarayıcıda elle metin yapıştırmak/kopyalamak için gerekmez. Tüm posta kutusunu isteyenler diğer ZIP'teki klasik Outlook ajanını kullanmalıdır.
+
+GÜNLÜK KULLANIM
+3-BASLAT.cmd çalıştırıp açık tutun; Outlook panelini kullanın. Durdurmak için sunucu penceresinde Ctrl+C. Her istek bağımsızdır; önceki konuşma otomatik aktarılmaz. Tek mail paketi 3443 portunu, posta kutusu ajanı 3447 portunu kullanır. İki paket ayrı eklenti kimlikleriyle birlikte kurulabilir; iki manifesti karıştırmayın. İlk eski Claude paketiniz aynı kimlikle yüklüyse ikinci kez kopyasını eklemeyin; gerekirse eski özel eklentiyi bu manifestle güncelleyin/yeniden yükleyin.
+
+SORUN GİDERME
+Claude bulunamıyorsa 1-KURULUM.cmd ve Git for Windows/native Claude Code kurulumunu kontrol edin. API/Console hesabı seçtiyseniz 2-CLAUDE-GIRIS.cmd ile abonelik hesabınızı kullanın. Gerekirse kişisel terminalde claude auth logout / claude auth login. Üretim başarısızsa kullanım limiti, internet ve CLI sürümünü kontrol edin. Güncelleme için claude update veya winget upgrade --id Anthropic.ClaudeCode --exact. Tarayıcı/sertifika hatasında sunucu penceresi ve 1-KURULUM.cmd; eklenti görünmüyorsa doğru posta hesabı ve aka.ms/olksideload diyalogu. Kurum engeli varsa yönetici izni gerekir. Office mail okuma/yanıta ekleme yalnız Outlook içindeki panelde çalışır; tarayıcı önizlemesinde elle metin kullanın.
+
+ELLE BAĞIMLILIK KURULUMU
+PowerShell'de:
+winget install --id OpenJS.NodeJS.LTS --exact
+winget install --id Git.Git --exact
+winget install --id Anthropic.ClaudeCode --exact
+Terminali kapatıp yeniden açın ve 1-KURULUM.cmd tekrar çalıştırın.
+Winget yoksa:
+https://nodejs.org/en/download
+https://git-scm.com/downloads/win
+https://code.claude.com/docs/en/setup
+
+VERİ, PAYLAŞIM VE KALDIRMA
+İsteğiniz ve gönderdiğiniz mail metni resmî Claude Code üzerinden Anthropic'e gider; model çevrimdışı çalışmaz. Abonelik limitini kullanır. Paket oturum belirteci/şifre kopyalamaz. Dağıtım ZIP'i .local/.qa ve özel sertifikaları içermez. Her kullanıcı kendi bilgisayarında kurar ve kendi hesabına giriş yapar. Kurulum sonrası oluşan .local klasörünü paylaşmayın.
+Kaldırmak için sunucuyu durdurun, Outlook'tan özel eklentiyi kaldırın ve 5-SERTIFIKAYI-KALDIR.cmd çalıştırın. Sonra paket klasörünü elle silebilirsiniz. Node.js, Git ve Claude Code kaldırılmaz.
+
+DOĞRULAMA DURUMU
+12 otomatik test, örnek verilerle tarayıcı ve taklit Office.js testleri yapıldı. Gerçek Claude hesabıyla ve hedef Outlook sürümünde uçtan uca akış bu bilgisayarda denenmedi. Ayrıntılar: DOGRULAMA.md. Resmî Microsoft/Anthropic eklentisi değildir; kişisel kullanım prototipidir.
+
+RESMÎ KAYNAKLAR
+https://code.claude.com/docs/en/authentication
+https://code.claude.com/docs/en/cli-reference
+https://code.claude.com/docs/en/headless
+https://code.claude.com/docs/en/legal-and-compliance
+https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/sideload-outlook-add-ins-for-testing
